@@ -24,6 +24,7 @@ Production: `npm run build && npm start`. Every route is static, so it deploys a
 | --- | --- |
 | 💌 **The Date Ask** | Invite creator → `/invite#…` walkthrough (meal, vibe, timing) → pulsing YES / dodging "No" → boarding-pass **Date Ticket** (`/ticket#…`) |
 | ✨ **Spark** | Quirks swipe deck (right / left / down, with compatibility via `/quirks#…`), 5-round **Crush Telepathy** with a 10 s timer (`/telepathy#…`), **Blind Date Matcher** (pass-the-phone or `/match#…`), downloadable PNG **voucher** (`/pass#…`) |
+| 🎁 **Gift Finder** | Trending gift ideas **for him** and **for her** (plus couple gifts), ranked by budget, occasion and interests, each with a "make it yours" tip and Amazon/Flipkart search links. "Surprise me" pick and a **Drop a hint** wishlist (`/hint#…`). Trends live in `data/gifts.ts`; bump `TRENDS_UPDATED` when you refresh them |
 | 🎡 **Weekender** | **Daily Vibe Drop** (new prompt at 9:00 AM, blur-to-reveal, countdown), physics **Date Roulette** with 4 filters and per-peg ticks, **Bucket List** (Movies / Cafes / Road Trips, mergeable via `/bucket#…`) |
 | 🏡 **Nest & Money** | **Fair Share** ledger (50/50 or on-behalf, "A owes B ₹340"), **UPI QR** settle-up (`upi://pay?pa=…&am=…`, generated locally), **Chore Harmony** board with a balance meter |
 | 🪔 **Kinfolk & Family** | **Family Passports** (teas, snacks, diets, routines, communication preferences), important-date countdown cards, **Festival & Holiday Balance** rotation, **In-Law Respect** flip cards, boundary guide |
@@ -40,13 +41,14 @@ chime). No audio files.
 ## Structure
 
 ```
-├── data/                 # seed content: dateask, spark, flashcards, family, dailyprompts, weekender, horizons
+├── data/                 # seed content: dateask, spark, gifts, flashcards, family, dailyprompts, weekender, horizons
 └── src/
-    ├── app/              # "/" (tabbed app) + share routes: invite, ticket, quirks, telepathy, match, deck, flame, pass, bucket, capsule
+    ├── app/              # "/" (tabbed app) + share routes: invite, ticket, hint, quirks, telepathy, match, deck, flame, pass, bucket, capsule
     ├── components/
     │   ├── layout/       # Navbar, DailyStreak, SoundToggle
     │   ├── dateask/      # InviteCreator, DateFlow, MealSelector, VibeSelector, ConfirmedTicket
     │   ├── spark/        # SwipeDeck, TelepathyGame, BlindMatcher, DateVoucher
+    │   ├── gifts/        # GiftFinder, GiftsTab
     │   ├── weekender/    # RouletteWheel, BucketList, DailyVibeDrop
     │   ├── nest/         # ExpenseTracker, UpiQrModal, ChoreBoard
     │   ├── family/       # FamilyPassport, HolidayPlanner

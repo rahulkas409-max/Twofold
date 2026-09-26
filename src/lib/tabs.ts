@@ -1,6 +1,7 @@
 export const TABS = [
   { id: "date-ask", label: "The Date Ask", short: "Date Ask", emoji: "💌" },
   { id: "spark", label: "Spark", short: "Spark", emoji: "✨" },
+  { id: "gifts", label: "Gift Finder", short: "Gifts", emoji: "🎁" },
   { id: "weekender", label: "Weekender", short: "Weekend", emoji: "🎡" },
   { id: "nest", label: "Nest & Money", short: "Nest", emoji: "🏡" },
   { id: "kinfolk", label: "Kinfolk & Family", short: "Family", emoji: "🪔" },

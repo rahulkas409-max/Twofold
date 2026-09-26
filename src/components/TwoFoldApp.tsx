@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import { DateAskTab } from "@/components/dateask/DateAskTab";
 import { KinfolkTab } from "@/components/family/KinfolkTab";
 import { FlashcardHub } from "@/components/flashcards/FlashcardHub";
+import { GiftsTab } from "@/components/gifts/GiftsTab";
 import { HorizonsTab } from "@/components/horizons/HorizonsTab";
 import { Navbar, TopBar } from "@/components/layout/Navbar";
 import { NestTab } from "@/components/nest/NestTab";
@@ -17,6 +18,7 @@ import { isTab, TABS, type TabId } from "@/lib/tabs";
 const VIEWS: Record<TabId, () => React.ReactNode> = {
   "date-ask": () => <DateAskTab />,
   spark: () => <SparkTab />,
+  gifts: () => <GiftsTab />,
   weekender: () => <WeekenderTab />,
   nest: () => <NestTab />,
   kinfolk: () => <KinfolkTab />,

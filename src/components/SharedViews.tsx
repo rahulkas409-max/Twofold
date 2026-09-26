@@ -10,6 +10,7 @@ import { isInvite, isTicket } from "@/components/dateask/types";
 import type { FlameSync } from "@/components/layout/DailyStreak";
 import { DeckViewer } from "@/components/flashcards/DeckViewer";
 import { useStudio, type DeckShare } from "@/components/flashcards/CardStudio";
+import { GiftCard, type HintShare } from "@/components/gifts/GiftFinder";
 import { CapsuleCard, useCapsules, type CapsuleShare } from "@/components/horizons/TimeCapsule";
 import { BlindMatchPlay, type MatchShare } from "@/components/spark/BlindMatcher";
 import { VoucherCard, type VoucherData } from "@/components/spark/DateVoucher";
@@ -17,6 +18,7 @@ import { SwipeDeck, type QuirksShare } from "@/components/spark/SwipeDeck";
 import { TelepathyPlay, type TelepathyShare } from "@/components/spark/TelepathyGame";
 import { useBucket, type BucketShare } from "@/components/weekender/BucketList";
 import { BUCKET_CATEGORIES } from "@data/weekender";
+import { GIFTS } from "@data/gifts";
 import { DATE_IDEAS, QUIRKS, TELEPATHY } from "@data/spark";
 import { sfx } from "@/lib/audio";
 import { celebrate } from "@/lib/confetti";
@@ -274,4 +276,20 @@ export const CapsuleView = sharedPage(
   (x): x is CapsuleShare =>
     isObj(x) && isStr(x.t) && isStr(x.f) && isStr(x.u) && /^\d{4}-\d{2}-\d{2}$/.test(x.u) && isObj(x.s) && isStr(x.s.ct) && isStr(x.s.iv) && isStr(x.s.salt),
   (d) => <CapsuleImport d={d} />,
+);
+
+export const HintView = sharedPage(
+  "gift hint",
+  (x): x is HintShare => isObj(x) && isStr(x.n) && Array.isArray(x.g) && x.g.some((id) => GIFTS.some((g) => g.id === id)),
+  (d) => (
+    <>
+      <Title kicker={`${d.n} dropped a hint 👀`} title="Gifts they'd secretly love" />
+      <div className="grid gap-4 sm:grid-cols-2">
+        {GIFTS.filter((g) => d.g.includes(g.id)).map((g) => (
+          <GiftCard key={g.id} gift={g} />
+        ))}
+      </div>
+      <p className="mt-6 text-center text-sm text-ink-soft">Act surprised when you give it. You never saw this list 🤫</p>
+    </>
+  ),
 );

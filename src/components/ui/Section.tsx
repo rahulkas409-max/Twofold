@@ -12,7 +12,7 @@ type Props = {
 /** A titled block inside a module tab. */
 export function Section({ eyebrow, title, description, children, id, action }: Props) {
   return (
-    <section id={id} className="scroll-mt-28">
+    <section id={id} className="min-w-0 scroll-mt-28">
       <div className="mb-4 flex items-end justify-between gap-3 px-1">
         <div>
           <p className="eyebrow">{eyebrow}</p>
